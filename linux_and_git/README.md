@@ -1,6 +1,15 @@
 # Linux and Git
 
-This folder contains two shell scripts for working with local data files.
+This folder contains two shell scripts, one for a simpl etl pipeline, another for moving data files between two directories.
+
+## Clone the repository
+
+Clone the repository and change into this folder:
+
+```bash
+git clone https://github.com/dzumii/cde-projects.git
+cd cde-projects/linux_and_git
+```
 
 ## 1) ETL script: script.sh
 
@@ -53,9 +62,7 @@ crontab -l
 
 ## 2) JSON/CSV mover: second_script.sh
 
-The second script is much simpler. It does not perform ETL.
-
-Its purpose is to move JSON and CSV files from the `sources` directory into a `json_and_csv` folder.
+The second script  moves JSON and CSV files from the `sources` directory into a `json_and_csv` folder.
 
 ### Run the file mover
 
