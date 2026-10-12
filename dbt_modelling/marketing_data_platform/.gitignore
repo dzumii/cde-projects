@@ -3,7 +3,8 @@ dbt_packages/
 logs/
 profiles.yml
 .env
-.venv/
+dbt_modelling/.venv
 __pycache__/
 *.pyc
 .DS_Store
+dbt_modelling/marketing_data_platform/wsl_history_backup.txt

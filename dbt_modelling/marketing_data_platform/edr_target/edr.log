@@ -302,3 +302,338 @@ elementary.exceptions.exceptions.DbtCommandError: Failed to run dbt command.
 Runtime Error
   Could not find profile named 'elementary'
 2026-10-12 22:52:33 — INFO — Running with edr=0.26.1
+2026-10-12 23:33:40 — INFO — Running with edr=0.26.1
+2026-10-12 23:33:41 — DEBUG — Profile 'elementary' not found in profiles.yml
+2026-10-12 23:33:41 — DEBUG — Running dbt command --log-format json run-operation elementary.log_macro_results --args {"macro_name": "elementary_cli.get_latest_invocation", "macro_args": {}} --project-dir /home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/monitor/dbt_project --profiles-dir /home/dzumi/.dbt --target dev
+[31;20m2026-10-12 23:33:44 — ERROR — Unable to get the latest invocation: Failed to run dbt command.
+Runtime Error
+  Could not find profile named 'elementary'[0m
+2026-10-12 23:33:44 — DEBUG — Running dbt command --log-format json run-operation elementary.log_macro_results --args {"macro_name": "elementary_cli.get_adapter_type_and_unique_id", "macro_args": {}} --project-dir /home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/monitor/dbt_project --profiles-dir /home/dzumi/.dbt --target dev
+2026-10-12 23:33:45 — DEBUG — Could not get warehouse info.
+Traceback (most recent call last):
+  File "/home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/monitor/data_monitoring/data_monitoring.py", line 139, in _get_warehouse_info
+    self.internal_dbt_runner.run_operation(
+  File "/home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/clients/dbt/command_line_dbt_runner.py", line 369, in run_operation
+    result = self._run_command(
+             ^^^^^^^^^^^^^^^^^^
+  File "/home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/clients/dbt/command_line_dbt_runner.py", line 227, in _run_command
+    return self._inner_run_command_with_retries(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/tenacity/__init__.py", line 404, in wrapped_f
+    return copy(f, *args, **kw)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/tenacity/__init__.py", line 550, in __call__
+    do = self.iter(retry_state=retry_state)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/tenacity/__init__.py", line 440, in iter
+    result = action(retry_state)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/tenacity/__init__.py", line 462, in <lambda>
+    self._add_action_func(lambda rs: rs.outcome.result())
+                                     ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/tenacity/__init__.py", line 553, in __call__
+    result = fn(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/clients/dbt/command_line_dbt_runner.py", line 264, in _inner_run_command_with_retries
+    result = self._inner_run_command(
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/clients/dbt/api_dbt_runner.py", line 59, in _inner_run_command
+    raise DbtCommandError(
+elementary.exceptions.exceptions.DbtCommandError: Failed to run dbt command.
+Runtime Error
+  Could not find profile named 'elementary'
+2026-10-12 23:33:45 — DEBUG — Running dbt command --log-format json run-operation elementary.log_macro_results --args {"macro_name": "elementary_cli.get_elementary_database_and_schema", "macro_args": {}} --project-dir /home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/monitor/dbt_project --profiles-dir /home/dzumi/.dbt --target dev
+[31;20m2026-10-12 23:33:47 — ERROR — Failed to parse Elementary's database and schema.[0m
+2026-10-12 23:33:47 — INFO — Running dbt command --log-format json run-operation elementary.log_macro_results --args {"macro_name": "elementary_cli.get_test_results", "macro_args": {"days_back": 7, "invocations_per_test": 720, "disable_passed_test_metrics": false, "skip_test_result_rows": false}} --project-dir /home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/monitor/dbt_project --profiles-dir /home/dzumi/.dbt --target dev
+[31;20m2026-10-12 23:33:48 — ERROR — Could not generate the report - Error: Failed to run dbt command.
+Runtime Error
+  Could not find profile named 'elementary'
+Please reach out to our community for help with this issue.[0m
+Traceback (most recent call last):
+  File "/home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/monitor/api/report/report.py", line 85, in get_report_data
+    tests_api = TestsAPI(
+                ^^^^^^^^^
+  File "/home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/monitor/api/tests/tests.py", line 53, in __init__
+    self.test_results_db_rows = self._get_test_results_db_rows(
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/monitor/api/tests/tests.py", line 67, in _get_test_results_db_rows
+    return self.tests_fetcher.get_all_test_results_db_rows(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/monitor/fetchers/tests/tests.py", line 27, in get_all_test_results_db_rows
+    run_operation_response = self.dbt_runner.run_operation(
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/clients/dbt/command_line_dbt_runner.py", line 369, in run_operation
+    result = self._run_command(
+             ^^^^^^^^^^^^^^^^^^
+  File "/home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/clients/dbt/command_line_dbt_runner.py", line 227, in _run_command
+    return self._inner_run_command_with_retries(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/tenacity/__init__.py", line 404, in wrapped_f
+    return copy(f, *args, **kw)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/tenacity/__init__.py", line 550, in __call__
+    do = self.iter(retry_state=retry_state)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/tenacity/__init__.py", line 440, in iter
+    result = action(retry_state)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/tenacity/__init__.py", line 462, in <lambda>
+    self._add_action_func(lambda rs: rs.outcome.result())
+                                     ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/tenacity/__init__.py", line 553, in __call__
+    result = fn(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/clients/dbt/command_line_dbt_runner.py", line 264, in _inner_run_command_with_retries
+    result = self._inner_run_command(
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/clients/dbt/api_dbt_runner.py", line 59, in _inner_run_command
+    raise DbtCommandError(
+elementary.exceptions.exceptions.DbtCommandError: Failed to run dbt command.
+Runtime Error
+  Could not find profile named 'elementary'
+2026-10-12 23:38:08 — INFO — Running with edr=0.26.1
+2026-10-12 23:38:12 — DEBUG — Resolved adapter type 'databricks' for target 'dev'
+2026-10-12 23:38:12 — DEBUG — Running dbt command --log-format json run-operation elementary.log_macro_results --args {"macro_name": "elementary_cli.get_latest_invocation", "macro_args": {}} --project-dir /home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/monitor/dbt_project --profiles-dir /home/dzumi/.dbt --target dev
+2026-10-12 23:38:48 — DEBUG — Result bytes size for command '--log-format json run-operation elementary.log_macro_results --args {"macro_name": "elementary_cli.get_latest_invocation", "macro_args": {}} --project-dir /home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/monitor/dbt_project --profiles-dir /home/dzumi/.dbt --target dev' is 2618
+2026-10-12 23:38:48 — DEBUG — Running dbt command --log-format json run-operation elementary.log_macro_results --args {"macro_name": "elementary_cli.get_adapter_type_and_unique_id", "macro_args": {}} --project-dir /home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/monitor/dbt_project --profiles-dir /home/dzumi/.dbt --target dev
+2026-10-12 23:38:51 — DEBUG — Result bytes size for command '--log-format json run-operation elementary.log_macro_results --args {"macro_name": "elementary_cli.get_adapter_type_and_unique_id", "macro_args": {}} --project-dir /home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/monitor/dbt_project --profiles-dir /home/dzumi/.dbt --target dev' is 518
+[33;20m2026-10-12 23:38:51 — WARNING — You are using incompatible versions between edr (0.26.1) and Elementary's dbt package (0.16.0).
+ To fix please update your packages.yml, and run:
+dbt deps && dbt run --select elementary
+[0m
+2026-10-12 23:38:51 — DEBUG — Running dbt command --log-format json run-operation elementary.log_macro_results --args {"macro_name": "elementary_cli.get_elementary_database_and_schema", "macro_args": {}} --project-dir /home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/monitor/dbt_project --profiles-dir /home/dzumi/.dbt --target dev
+2026-10-12 23:38:54 — DEBUG — Result bytes size for command '--log-format json run-operation elementary.log_macro_results --args {"macro_name": "elementary_cli.get_elementary_database_and_schema", "macro_args": {}} --project-dir /home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/monitor/dbt_project --profiles-dir /home/dzumi/.dbt --target dev' is 448
+2026-10-12 23:38:54 — INFO — Elementary's database and schema: 'marketing_dev.staging'
+2026-10-12 23:38:54 — INFO — Running dbt command --log-format json run-operation elementary.log_macro_results --args {"macro_name": "elementary_cli.get_test_results", "macro_args": {"days_back": 7, "invocations_per_test": 720, "disable_passed_test_metrics": false, "skip_test_result_rows": false}} --project-dir /home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/monitor/dbt_project --profiles-dir /home/dzumi/.dbt --target dev
+2026-10-12 23:39:10 — DEBUG — Result bytes size for command '--log-format json run-operation elementary.log_macro_results --args {"macro_name": "elementary_cli.get_test_results", "macro_args": {"days_back": 7, "invocations_per_test": 720, "disable_passed_test_metrics": false, "skip_test_result_rows": false}} --project-dir /home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/monitor/dbt_project --profiles-dir /home/dzumi/.dbt --target dev' is 246740
+2026-10-12 23:39:10 — INFO — Running dbt command --log-format json run-operation elementary.log_macro_results --args {"macro_name": "elementary_cli.get_source_freshness_results", "macro_args": {"days_back": 7, "invocations_per_test": 720}} --project-dir /home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/monitor/dbt_project --profiles-dir /home/dzumi/.dbt --target dev
+2026-10-12 23:39:17 — DEBUG — Result bytes size for command '--log-format json run-operation elementary.log_macro_results --args {"macro_name": "elementary_cli.get_source_freshness_results", "macro_args": {"days_back": 7, "invocations_per_test": 720}} --project-dir /home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/monitor/dbt_project --profiles-dir /home/dzumi/.dbt --target dev' is 402
+2026-10-12 23:39:17 — INFO — Running dbt command --log-format json run-operation elementary.log_macro_results --args {"macro_name": "elementary_cli.get_seeds", "macro_args": {}} --project-dir /home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/monitor/dbt_project --profiles-dir /home/dzumi/.dbt --target dev
+2026-10-12 23:39:24 — DEBUG — Result bytes size for command '--log-format json run-operation elementary.log_macro_results --args {"macro_name": "elementary_cli.get_seeds", "macro_args": {}} --project-dir /home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/monitor/dbt_project --profiles-dir /home/dzumi/.dbt --target dev' is 402
+2026-10-12 23:39:24 — INFO — Running dbt command --log-format json run-operation elementary.log_macro_results --args {"macro_name": "elementary_cli.get_snapshots", "macro_args": {}} --project-dir /home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/monitor/dbt_project --profiles-dir /home/dzumi/.dbt --target dev
+[31;20m2026-10-12 23:39:31 — ERROR — Could not generate the report - Error: Failed to run dbt command.
+{"info": {"name": "RunningOperationCaughtError", "code": "Q001", "msg": "[\u001b[31mERROR\u001b[0m]: Encountered an error while running operation: Database Error\n  Database Error\n    [UNRESOLVED_COLUMN.WITH_SUGGESTION] A column, variable, or function parameter with name `unique_key` cannot be resolved. Did you mean one of the following? [`unique_id`, `name`, `meta`, `owner`, `alias`]. SQLSTATE: 42703; line 26 pos 18", "level": "error", "invocationId": "f9a10ee7-1b0a-4a50-9266-862dde184054", "pid": 33759, "thread": "MainThread", "ts": "2026-10-12T22:39:30.075898Z"}, "data": {"exc": "Database Error\n  Database Error\n    [UNRESOLVED_COLUMN.WITH_SUGGESTION] A column, variable, or function parameter with name `unique_key` cannot be resolved. Did you mean one of the following? [`unique_id`, `name`, `meta`, `owner`, `alias`]. SQLSTATE: 42703; line 26 pos 18"}}
+Please reach out to our community for help with this issue.[0m
+Traceback (most recent call last):
+  File "/home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/monitor/api/report/report.py", line 105, in get_report_data
+    snapshots = models_api.get_snapshots()
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/monitor/api/models/models.py", line 140, in get_snapshots
+    snapshot_results = self.models_fetcher.get_snapshots()
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/monitor/fetchers/models/models.py", line 48, in get_snapshots
+    run_operation_response = self.dbt_runner.run_operation(
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/clients/dbt/command_line_dbt_runner.py", line 369, in run_operation
+    result = self._run_command(
+             ^^^^^^^^^^^^^^^^^^
+  File "/home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/clients/dbt/command_line_dbt_runner.py", line 227, in _run_command
+    return self._inner_run_command_with_retries(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/tenacity/__init__.py", line 404, in wrapped_f
+    return copy(f, *args, **kw)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/tenacity/__init__.py", line 550, in __call__
+    do = self.iter(retry_state=retry_state)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/tenacity/__init__.py", line 440, in iter
+    result = action(retry_state)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/tenacity/__init__.py", line 462, in <lambda>
+    self._add_action_func(lambda rs: rs.outcome.result())
+                                     ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/tenacity/__init__.py", line 553, in __call__
+    result = fn(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/clients/dbt/command_line_dbt_runner.py", line 264, in _inner_run_command_with_retries
+    result = self._inner_run_command(
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/clients/dbt/api_dbt_runner.py", line 59, in _inner_run_command
+    raise DbtCommandError(
+elementary.exceptions.exceptions.DbtCommandError: Failed to run dbt command.
+{"info": {"name": "RunningOperationCaughtError", "code": "Q001", "msg": "[\u001b[31mERROR\u001b[0m]: Encountered an error while running operation: Database Error\n  Database Error\n    [UNRESOLVED_COLUMN.WITH_SUGGESTION] A column, variable, or function parameter with name `unique_key` cannot be resolved. Did you mean one of the following? [`unique_id`, `name`, `meta`, `owner`, `alias`]. SQLSTATE: 42703; line 26 pos 18", "level": "error", "invocationId": "f9a10ee7-1b0a-4a50-9266-862dde184054", "pid": 33759, "thread": "MainThread", "ts": "2026-10-12T22:39:30.075898Z"}, "data": {"exc": "Database Error\n  Database Error\n    [UNRESOLVED_COLUMN.WITH_SUGGESTION] A column, variable, or function parameter with name `unique_key` cannot be resolved. Did you mean one of the following? [`unique_id`, `name`, `meta`, `owner`, `alias`]. SQLSTATE: 42703; line 26 pos 18"}}
+2026-10-12 23:40:22 — INFO — Running with edr=0.26.1
+2026-10-12 23:40:25 — DEBUG — Resolved adapter type 'databricks' for target 'dev'
+2026-10-12 23:40:25 — DEBUG — Running dbt command --log-format json run-operation elementary.log_macro_results --args {"macro_name": "elementary_cli.get_latest_invocation", "macro_args": {}} --project-dir /home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/monitor/dbt_project --profiles-dir /home/dzumi/.dbt --target dev
+2026-10-12 23:40:43 — DEBUG — Result bytes size for command '--log-format json run-operation elementary.log_macro_results --args {"macro_name": "elementary_cli.get_latest_invocation", "macro_args": {}} --project-dir /home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/monitor/dbt_project --profiles-dir /home/dzumi/.dbt --target dev' is 2618
+2026-10-12 23:40:43 — DEBUG — Running dbt command --log-format json run-operation elementary.log_macro_results --args {"macro_name": "elementary_cli.get_adapter_type_and_unique_id", "macro_args": {}} --project-dir /home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/monitor/dbt_project --profiles-dir /home/dzumi/.dbt --target dev
+2026-10-12 23:40:43 — DEBUG — Result bytes size for command '--log-format json run-operation elementary.log_macro_results --args {"macro_name": "elementary_cli.get_adapter_type_and_unique_id", "macro_args": {}} --project-dir /home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/monitor/dbt_project --profiles-dir /home/dzumi/.dbt --target dev' is 518
+[33;20m2026-10-12 23:40:43 — WARNING — You are using incompatible versions between edr (0.26.1) and Elementary's dbt package (0.16.0).
+ To fix please update your packages.yml, and run:
+dbt deps && dbt run --select elementary
+[0m
+2026-10-12 23:40:43 — DEBUG — Running dbt command --log-format json run-operation elementary.log_macro_results --args {"macro_name": "elementary_cli.get_elementary_database_and_schema", "macro_args": {}} --project-dir /home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/monitor/dbt_project --profiles-dir /home/dzumi/.dbt --target dev
+2026-10-12 23:40:46 — DEBUG — Result bytes size for command '--log-format json run-operation elementary.log_macro_results --args {"macro_name": "elementary_cli.get_elementary_database_and_schema", "macro_args": {}} --project-dir /home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/monitor/dbt_project --profiles-dir /home/dzumi/.dbt --target dev' is 448
+2026-10-12 23:40:46 — INFO — Elementary's database and schema: 'marketing_dev.staging'
+2026-10-12 23:40:46 — INFO — Running dbt command --log-format json run-operation elementary.log_macro_results --args {"macro_name": "elementary_cli.get_test_results", "macro_args": {"days_back": 7, "invocations_per_test": 720, "disable_passed_test_metrics": false, "skip_test_result_rows": false}} --project-dir /home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/monitor/dbt_project --profiles-dir /home/dzumi/.dbt --target dev
+2026-10-12 23:40:59 — DEBUG — Result bytes size for command '--log-format json run-operation elementary.log_macro_results --args {"macro_name": "elementary_cli.get_test_results", "macro_args": {"days_back": 7, "invocations_per_test": 720, "disable_passed_test_metrics": false, "skip_test_result_rows": false}} --project-dir /home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/monitor/dbt_project --profiles-dir /home/dzumi/.dbt --target dev' is 246740
+2026-10-12 23:40:59 — INFO — Running dbt command --log-format json run-operation elementary.log_macro_results --args {"macro_name": "elementary_cli.get_source_freshness_results", "macro_args": {"days_back": 7, "invocations_per_test": 720}} --project-dir /home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/monitor/dbt_project --profiles-dir /home/dzumi/.dbt --target dev
+2026-10-12 23:41:06 — DEBUG — Result bytes size for command '--log-format json run-operation elementary.log_macro_results --args {"macro_name": "elementary_cli.get_source_freshness_results", "macro_args": {"days_back": 7, "invocations_per_test": 720}} --project-dir /home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/monitor/dbt_project --profiles-dir /home/dzumi/.dbt --target dev' is 402
+2026-10-12 23:41:06 — INFO — Running dbt command --log-format json run-operation elementary.log_macro_results --args {"macro_name": "elementary_cli.get_seeds", "macro_args": {}} --project-dir /home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/monitor/dbt_project --profiles-dir /home/dzumi/.dbt --target dev
+2026-10-12 23:41:13 — DEBUG — Result bytes size for command '--log-format json run-operation elementary.log_macro_results --args {"macro_name": "elementary_cli.get_seeds", "macro_args": {}} --project-dir /home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/monitor/dbt_project --profiles-dir /home/dzumi/.dbt --target dev' is 402
+2026-10-12 23:41:13 — INFO — Running dbt command --log-format json run-operation elementary.log_macro_results --args {"macro_name": "elementary_cli.get_snapshots", "macro_args": {}} --project-dir /home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/monitor/dbt_project --profiles-dir /home/dzumi/.dbt --target dev
+[31;20m2026-10-12 23:41:20 — ERROR — Could not generate the report - Error: Failed to run dbt command.
+{"info": {"name": "RunningOperationCaughtError", "code": "Q001", "msg": "[\u001b[31mERROR\u001b[0m]: Encountered an error while running operation: Database Error\n  Database Error\n    [UNRESOLVED_COLUMN.WITH_SUGGESTION] A column, variable, or function parameter with name `unique_key` cannot be resolved. Did you mean one of the following? [`unique_id`, `name`, `meta`, `owner`, `alias`]. SQLSTATE: 42703; line 26 pos 18", "level": "error", "invocationId": "8432e86c-56f3-49ad-9015-49cd9611a9f7", "pid": 34300, "thread": "MainThread", "ts": "2026-10-12T22:41:17.402325Z"}, "data": {"exc": "Database Error\n  Database Error\n    [UNRESOLVED_COLUMN.WITH_SUGGESTION] A column, variable, or function parameter with name `unique_key` cannot be resolved. Did you mean one of the following? [`unique_id`, `name`, `meta`, `owner`, `alias`]. SQLSTATE: 42703; line 26 pos 18"}}
+Please reach out to our community for help with this issue.[0m
+Traceback (most recent call last):
+  File "/home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/monitor/api/report/report.py", line 105, in get_report_data
+    snapshots = models_api.get_snapshots()
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/monitor/api/models/models.py", line 140, in get_snapshots
+    snapshot_results = self.models_fetcher.get_snapshots()
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/monitor/fetchers/models/models.py", line 48, in get_snapshots
+    run_operation_response = self.dbt_runner.run_operation(
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/clients/dbt/command_line_dbt_runner.py", line 369, in run_operation
+    result = self._run_command(
+             ^^^^^^^^^^^^^^^^^^
+  File "/home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/clients/dbt/command_line_dbt_runner.py", line 227, in _run_command
+    return self._inner_run_command_with_retries(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/tenacity/__init__.py", line 404, in wrapped_f
+    return copy(f, *args, **kw)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/tenacity/__init__.py", line 550, in __call__
+    do = self.iter(retry_state=retry_state)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/tenacity/__init__.py", line 440, in iter
+    result = action(retry_state)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/tenacity/__init__.py", line 462, in <lambda>
+    self._add_action_func(lambda rs: rs.outcome.result())
+                                     ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/tenacity/__init__.py", line 553, in __call__
+    result = fn(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/clients/dbt/command_line_dbt_runner.py", line 264, in _inner_run_command_with_retries
+    result = self._inner_run_command(
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/clients/dbt/api_dbt_runner.py", line 59, in _inner_run_command
+    raise DbtCommandError(
+elementary.exceptions.exceptions.DbtCommandError: Failed to run dbt command.
+{"info": {"name": "RunningOperationCaughtError", "code": "Q001", "msg": "[\u001b[31mERROR\u001b[0m]: Encountered an error while running operation: Database Error\n  Database Error\n    [UNRESOLVED_COLUMN.WITH_SUGGESTION] A column, variable, or function parameter with name `unique_key` cannot be resolved. Did you mean one of the following? [`unique_id`, `name`, `meta`, `owner`, `alias`]. SQLSTATE: 42703; line 26 pos 18", "level": "error", "invocationId": "8432e86c-56f3-49ad-9015-49cd9611a9f7", "pid": 34300, "thread": "MainThread", "ts": "2026-10-12T22:41:17.402325Z"}, "data": {"exc": "Database Error\n  Database Error\n    [UNRESOLVED_COLUMN.WITH_SUGGESTION] A column, variable, or function parameter with name `unique_key` cannot be resolved. Did you mean one of the following? [`unique_id`, `name`, `meta`, `owner`, `alias`]. SQLSTATE: 42703; line 26 pos 18"}}
+2026-10-12 23:44:54 — INFO — Running with edr=0.26.1
+2026-10-12 23:44:58 — DEBUG — Resolved adapter type 'databricks' for target 'dev'
+2026-10-12 23:44:58 — DEBUG — Running dbt command --log-format json run-operation elementary.log_macro_results --args {"macro_name": "elementary_cli.get_latest_invocation", "macro_args": {}} --project-dir /home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/monitor/dbt_project --profiles-dir /home/dzumi/.dbt --target dev
+2026-10-12 23:45:16 — DEBUG — Result bytes size for command '--log-format json run-operation elementary.log_macro_results --args {"macro_name": "elementary_cli.get_latest_invocation", "macro_args": {}} --project-dir /home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/monitor/dbt_project --profiles-dir /home/dzumi/.dbt --target dev' is 2618
+2026-10-12 23:45:16 — DEBUG — Running dbt command --log-format json run-operation elementary.log_macro_results --args {"macro_name": "elementary_cli.get_adapter_type_and_unique_id", "macro_args": {}} --project-dir /home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/monitor/dbt_project --profiles-dir /home/dzumi/.dbt --target dev
+2026-10-12 23:45:19 — DEBUG — Result bytes size for command '--log-format json run-operation elementary.log_macro_results --args {"macro_name": "elementary_cli.get_adapter_type_and_unique_id", "macro_args": {}} --project-dir /home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/monitor/dbt_project --profiles-dir /home/dzumi/.dbt --target dev' is 518
+[33;20m2026-10-12 23:45:19 — WARNING — You are using incompatible versions between edr (0.26.1) and Elementary's dbt package (0.16.0).
+ To fix please update your packages.yml, and run:
+dbt deps && dbt run --select elementary
+[0m
+2026-10-12 23:45:19 — DEBUG — Running dbt command --log-format json run-operation elementary.log_macro_results --args {"macro_name": "elementary_cli.get_elementary_database_and_schema", "macro_args": {}} --project-dir /home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/monitor/dbt_project --profiles-dir /home/dzumi/.dbt --target dev
+2026-10-12 23:45:21 — DEBUG — Result bytes size for command '--log-format json run-operation elementary.log_macro_results --args {"macro_name": "elementary_cli.get_elementary_database_and_schema", "macro_args": {}} --project-dir /home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/monitor/dbt_project --profiles-dir /home/dzumi/.dbt --target dev' is 448
+2026-10-12 23:45:21 — INFO — Elementary's database and schema: 'marketing_dev.staging'
+2026-10-12 23:45:21 — INFO — Running dbt command --log-format json run-operation elementary.log_macro_results --args {"macro_name": "elementary_cli.get_test_results", "macro_args": {"days_back": 7, "invocations_per_test": 720, "disable_passed_test_metrics": false, "skip_test_result_rows": false}} --project-dir /home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/monitor/dbt_project --profiles-dir /home/dzumi/.dbt --target dev
+2026-10-12 23:45:34 — DEBUG — Result bytes size for command '--log-format json run-operation elementary.log_macro_results --args {"macro_name": "elementary_cli.get_test_results", "macro_args": {"days_back": 7, "invocations_per_test": 720, "disable_passed_test_metrics": false, "skip_test_result_rows": false}} --project-dir /home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/monitor/dbt_project --profiles-dir /home/dzumi/.dbt --target dev' is 246740
+2026-10-12 23:45:34 — INFO — Running dbt command --log-format json run-operation elementary.log_macro_results --args {"macro_name": "elementary_cli.get_source_freshness_results", "macro_args": {"days_back": 7, "invocations_per_test": 720}} --project-dir /home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/monitor/dbt_project --profiles-dir /home/dzumi/.dbt --target dev
+2026-10-12 23:45:41 — DEBUG — Result bytes size for command '--log-format json run-operation elementary.log_macro_results --args {"macro_name": "elementary_cli.get_source_freshness_results", "macro_args": {"days_back": 7, "invocations_per_test": 720}} --project-dir /home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/monitor/dbt_project --profiles-dir /home/dzumi/.dbt --target dev' is 402
+2026-10-12 23:45:41 — INFO — Running dbt command --log-format json run-operation elementary.log_macro_results --args {"macro_name": "elementary_cli.get_seeds", "macro_args": {}} --project-dir /home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/monitor/dbt_project --profiles-dir /home/dzumi/.dbt --target dev
+2026-10-12 23:45:45 — DEBUG — Result bytes size for command '--log-format json run-operation elementary.log_macro_results --args {"macro_name": "elementary_cli.get_seeds", "macro_args": {}} --project-dir /home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/monitor/dbt_project --profiles-dir /home/dzumi/.dbt --target dev' is 402
+2026-10-12 23:45:45 — INFO — Running dbt command --log-format json run-operation elementary.log_macro_results --args {"macro_name": "elementary_cli.get_snapshots", "macro_args": {}} --project-dir /home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/monitor/dbt_project --profiles-dir /home/dzumi/.dbt --target dev
+[31;20m2026-10-12 23:45:53 — ERROR — Could not generate the report - Error: Failed to run dbt command.
+{"info": {"name": "RunningOperationCaughtError", "code": "Q001", "msg": "[\u001b[31mERROR\u001b[0m]: Encountered an error while running operation: Database Error\n  Database Error\n    [UNRESOLVED_COLUMN.WITH_SUGGESTION] A column, variable, or function parameter with name `unique_key` cannot be resolved. Did you mean one of the following? [`unique_id`, `name`, `meta`, `owner`, `alias`]. SQLSTATE: 42703; line 26 pos 18", "level": "error", "invocationId": "4c5d9fc6-b74d-47aa-aec6-c04b8f026a53", "pid": 35500, "thread": "MainThread", "ts": "2026-10-12T22:45:51.665659Z"}, "data": {"exc": "Database Error\n  Database Error\n    [UNRESOLVED_COLUMN.WITH_SUGGESTION] A column, variable, or function parameter with name `unique_key` cannot be resolved. Did you mean one of the following? [`unique_id`, `name`, `meta`, `owner`, `alias`]. SQLSTATE: 42703; line 26 pos 18"}}
+Please reach out to our community for help with this issue.[0m
+Traceback (most recent call last):
+  File "/home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/monitor/api/report/report.py", line 105, in get_report_data
+    snapshots = models_api.get_snapshots()
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/monitor/api/models/models.py", line 140, in get_snapshots
+    snapshot_results = self.models_fetcher.get_snapshots()
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/monitor/fetchers/models/models.py", line 48, in get_snapshots
+    run_operation_response = self.dbt_runner.run_operation(
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/clients/dbt/command_line_dbt_runner.py", line 369, in run_operation
+    result = self._run_command(
+             ^^^^^^^^^^^^^^^^^^
+  File "/home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/clients/dbt/command_line_dbt_runner.py", line 227, in _run_command
+    return self._inner_run_command_with_retries(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/tenacity/__init__.py", line 404, in wrapped_f
+    return copy(f, *args, **kw)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/tenacity/__init__.py", line 550, in __call__
+    do = self.iter(retry_state=retry_state)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/tenacity/__init__.py", line 440, in iter
+    result = action(retry_state)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/tenacity/__init__.py", line 462, in <lambda>
+    self._add_action_func(lambda rs: rs.outcome.result())
+                                     ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/tenacity/__init__.py", line 553, in __call__
+    result = fn(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/clients/dbt/command_line_dbt_runner.py", line 264, in _inner_run_command_with_retries
+    result = self._inner_run_command(
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/clients/dbt/api_dbt_runner.py", line 59, in _inner_run_command
+    raise DbtCommandError(
+elementary.exceptions.exceptions.DbtCommandError: Failed to run dbt command.
+{"info": {"name": "RunningOperationCaughtError", "code": "Q001", "msg": "[\u001b[31mERROR\u001b[0m]: Encountered an error while running operation: Database Error\n  Database Error\n    [UNRESOLVED_COLUMN.WITH_SUGGESTION] A column, variable, or function parameter with name `unique_key` cannot be resolved. Did you mean one of the following? [`unique_id`, `name`, `meta`, `owner`, `alias`]. SQLSTATE: 42703; line 26 pos 18", "level": "error", "invocationId": "4c5d9fc6-b74d-47aa-aec6-c04b8f026a53", "pid": 35500, "thread": "MainThread", "ts": "2026-10-12T22:45:51.665659Z"}, "data": {"exc": "Database Error\n  Database Error\n    [UNRESOLVED_COLUMN.WITH_SUGGESTION] A column, variable, or function parameter with name `unique_key` cannot be resolved. Did you mean one of the following? [`unique_id`, `name`, `meta`, `owner`, `alias`]. SQLSTATE: 42703; line 26 pos 18"}}
+2026-10-12 23:46:44 — INFO — Running with edr=0.26.1
+2026-10-12 23:46:47 — DEBUG — Resolved adapter type 'databricks' for target 'dev'
+2026-10-12 23:46:47 — DEBUG — Running dbt command --log-format json run-operation elementary.log_macro_results --args {"macro_name": "elementary_cli.get_latest_invocation", "macro_args": {}} --project-dir /home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/monitor/dbt_project --profiles-dir /home/dzumi/.dbt --target dev
+2026-10-12 23:47:21 — DEBUG — Result bytes size for command '--log-format json run-operation elementary.log_macro_results --args {"macro_name": "elementary_cli.get_latest_invocation", "macro_args": {}} --project-dir /home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/monitor/dbt_project --profiles-dir /home/dzumi/.dbt --target dev' is 2618
+2026-10-12 23:47:21 — DEBUG — Running dbt command --log-format json run-operation elementary.log_macro_results --args {"macro_name": "elementary_cli.get_adapter_type_and_unique_id", "macro_args": {}} --project-dir /home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/monitor/dbt_project --profiles-dir /home/dzumi/.dbt --target dev
+2026-10-12 23:47:24 — DEBUG — Result bytes size for command '--log-format json run-operation elementary.log_macro_results --args {"macro_name": "elementary_cli.get_adapter_type_and_unique_id", "macro_args": {}} --project-dir /home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/monitor/dbt_project --profiles-dir /home/dzumi/.dbt --target dev' is 518
+2026-10-12 23:47:24 — INFO — edr (0.26.1) and Elementary's dbt package (0.26.1) are compatible.
+2026-10-12 23:47:24 — DEBUG — Running dbt command --log-format json run-operation elementary.log_macro_results --args {"macro_name": "elementary_cli.get_elementary_database_and_schema", "macro_args": {}} --project-dir /home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/monitor/dbt_project --profiles-dir /home/dzumi/.dbt --target dev
+2026-10-12 23:47:28 — DEBUG — Result bytes size for command '--log-format json run-operation elementary.log_macro_results --args {"macro_name": "elementary_cli.get_elementary_database_and_schema", "macro_args": {}} --project-dir /home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/monitor/dbt_project --profiles-dir /home/dzumi/.dbt --target dev' is 470
+2026-10-12 23:47:28 — INFO — Elementary's database and schema: 'marketing_dev.staging_elementary'
+2026-10-12 23:47:28 — INFO — Running dbt command --log-format json run-operation elementary.log_macro_results --args {"macro_name": "elementary_cli.get_test_results", "macro_args": {"days_back": 7, "invocations_per_test": 720, "disable_passed_test_metrics": false, "skip_test_result_rows": false}} --project-dir /home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/monitor/dbt_project --profiles-dir /home/dzumi/.dbt --target dev
+2026-10-12 23:47:41 — DEBUG — Result bytes size for command '--log-format json run-operation elementary.log_macro_results --args {"macro_name": "elementary_cli.get_test_results", "macro_args": {"days_back": 7, "invocations_per_test": 720, "disable_passed_test_metrics": false, "skip_test_result_rows": false}} --project-dir /home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/monitor/dbt_project --profiles-dir /home/dzumi/.dbt --target dev' is 125362
+2026-10-12 23:47:41 — INFO — Running dbt command --log-format json run-operation elementary.log_macro_results --args {"macro_name": "elementary_cli.get_source_freshness_results", "macro_args": {"days_back": 7, "invocations_per_test": 720}} --project-dir /home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/monitor/dbt_project --profiles-dir /home/dzumi/.dbt --target dev
+2026-10-12 23:47:46 — DEBUG — Result bytes size for command '--log-format json run-operation elementary.log_macro_results --args {"macro_name": "elementary_cli.get_source_freshness_results", "macro_args": {"days_back": 7, "invocations_per_test": 720}} --project-dir /home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/monitor/dbt_project --profiles-dir /home/dzumi/.dbt --target dev' is 402
+2026-10-12 23:47:46 — INFO — Running dbt command --log-format json run-operation elementary.log_macro_results --args {"macro_name": "elementary_cli.get_seeds", "macro_args": {}} --project-dir /home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/monitor/dbt_project --profiles-dir /home/dzumi/.dbt --target dev
+2026-10-12 23:47:52 — DEBUG — Result bytes size for command '--log-format json run-operation elementary.log_macro_results --args {"macro_name": "elementary_cli.get_seeds", "macro_args": {}} --project-dir /home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/monitor/dbt_project --profiles-dir /home/dzumi/.dbt --target dev' is 402
+2026-10-12 23:47:53 — INFO — Running dbt command --log-format json run-operation elementary.log_macro_results --args {"macro_name": "elementary_cli.get_snapshots", "macro_args": {}} --project-dir /home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/monitor/dbt_project --profiles-dir /home/dzumi/.dbt --target dev
+2026-10-12 23:48:00 — DEBUG — Result bytes size for command '--log-format json run-operation elementary.log_macro_results --args {"macro_name": "elementary_cli.get_snapshots", "macro_args": {}} --project-dir /home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/monitor/dbt_project --profiles-dir /home/dzumi/.dbt --target dev' is 402
+2026-10-12 23:48:00 — INFO — Running dbt command --log-format json run-operation elementary.log_macro_results --args {"macro_name": "elementary_cli.get_models", "macro_args": {"exclude_elementary": true}} --project-dir /home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/monitor/dbt_project --profiles-dir /home/dzumi/.dbt --target dev
+2026-10-12 23:48:07 — DEBUG — Result bytes size for command '--log-format json run-operation elementary.log_macro_results --args {"macro_name": "elementary_cli.get_models", "macro_args": {"exclude_elementary": true}} --project-dir /home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/monitor/dbt_project --profiles-dir /home/dzumi/.dbt --target dev' is 5150
+2026-10-12 23:48:07 — INFO — Running dbt command --log-format json run-operation elementary.log_macro_results --args {"macro_name": "elementary_cli.get_sources", "macro_args": {}} --project-dir /home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/monitor/dbt_project --profiles-dir /home/dzumi/.dbt --target dev
+2026-10-12 23:48:15 — DEBUG — Result bytes size for command '--log-format json run-operation elementary.log_macro_results --args {"macro_name": "elementary_cli.get_sources", "macro_args": {}} --project-dir /home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/monitor/dbt_project --profiles-dir /home/dzumi/.dbt --target dev' is 8388
+2026-10-12 23:48:15 — INFO — Running dbt command --log-format json run-operation elementary.log_macro_results --args {"macro_name": "elementary_cli.get_exposures", "macro_args": {}} --project-dir /home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/monitor/dbt_project --profiles-dir /home/dzumi/.dbt --target dev
+2026-10-12 23:48:22 — DEBUG — Result bytes size for command '--log-format json run-operation elementary.log_macro_results --args {"macro_name": "elementary_cli.get_exposures", "macro_args": {}} --project-dir /home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/monitor/dbt_project --profiles-dir /home/dzumi/.dbt --target dev' is 402
+2026-10-12 23:48:22 — INFO — Running dbt command --log-format json run-operation elementary.log_macro_results --args {"macro_name": "elementary_cli.get_singular_tests", "macro_args": {}} --project-dir /home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/monitor/dbt_project --profiles-dir /home/dzumi/.dbt --target dev
+2026-10-12 23:48:29 — DEBUG — Result bytes size for command '--log-format json run-operation elementary.log_macro_results --args {"macro_name": "elementary_cli.get_singular_tests", "macro_args": {}} --project-dir /home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/monitor/dbt_project --profiles-dir /home/dzumi/.dbt --target dev' is 1370
+2026-10-12 23:48:29 — INFO — Running dbt command --log-format json run-operation elementary.log_macro_results --args {"macro_name": "elementary_cli.get_models_runs", "macro_args": {"days_back": 7, "exclude_elementary": true}} --project-dir /home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/monitor/dbt_project --profiles-dir /home/dzumi/.dbt --target dev
+2026-10-12 23:48:36 — DEBUG — Result bytes size for command '--log-format json run-operation elementary.log_macro_results --args {"macro_name": "elementary_cli.get_models_runs", "macro_args": {"days_back": 7, "exclude_elementary": true}} --project-dir /home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/monitor/dbt_project --profiles-dir /home/dzumi/.dbt --target dev' is 8800
+2026-10-12 23:48:36 — INFO — Running dbt command --log-format json run-operation elementary.log_macro_results --args {"macro_name": "elementary_cli.get_dbt_models_test_coverage", "macro_args": {}} --project-dir /home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/monitor/dbt_project --profiles-dir /home/dzumi/.dbt --target dev
+2026-10-12 23:48:42 — DEBUG — Result bytes size for command '--log-format json run-operation elementary.log_macro_results --args {"macro_name": "elementary_cli.get_dbt_models_test_coverage", "macro_args": {}} --project-dir /home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/monitor/dbt_project --profiles-dir /home/dzumi/.dbt --target dev' is 1334
+2026-10-12 23:48:42 — INFO — Running dbt command --log-format json run-operation elementary.log_macro_results --args {"macro_name": "elementary_cli.get_tests", "macro_args": {}} --project-dir /home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/monitor/dbt_project --profiles-dir /home/dzumi/.dbt --target dev
+2026-10-12 23:48:48 — DEBUG — Result bytes size for command '--log-format json run-operation elementary.log_macro_results --args {"macro_name": "elementary_cli.get_tests", "macro_args": {}} --project-dir /home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/monitor/dbt_project --profiles-dir /home/dzumi/.dbt --target dev' is 61834
+2026-10-12 23:48:48 — INFO — Running dbt command --log-format json run-operation elementary.log_macro_results --args {"macro_name": "elementary_cli.get_nodes_depends_on_nodes", "macro_args": {"exclude_elementary": true}} --project-dir /home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/monitor/dbt_project --profiles-dir /home/dzumi/.dbt --target dev
+2026-10-12 23:48:55 — DEBUG — Result bytes size for command '--log-format json run-operation elementary.log_macro_results --args {"macro_name": "elementary_cli.get_nodes_depends_on_nodes", "macro_args": {"exclude_elementary": true}} --project-dir /home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/monitor/dbt_project --profiles-dir /home/dzumi/.dbt --target dev' is 5760
+2026-10-12 23:48:55 — INFO — Running dbt command --log-format json run-operation elementary.log_macro_results --args {"macro_name": "elementary_cli.get_models_latest_invocation", "macro_args": {}} --project-dir /home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/monitor/dbt_project --profiles-dir /home/dzumi/.dbt --target dev
+2026-10-12 23:49:02 — DEBUG — Result bytes size for command '--log-format json run-operation elementary.log_macro_results --args {"macro_name": "elementary_cli.get_models_latest_invocation", "macro_args": {}} --project-dir /home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/monitor/dbt_project --profiles-dir /home/dzumi/.dbt --target dev' is 8252
+2026-10-12 23:49:03 — INFO — Running dbt command --log-format json run-operation elementary.log_macro_results --args {"macro_name": "elementary_cli.get_models_latest_invocations_data", "macro_args": {}} --project-dir /home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/monitor/dbt_project --profiles-dir /home/dzumi/.dbt --target dev
+2026-10-12 23:49:12 — DEBUG — Result bytes size for command '--log-format json run-operation elementary.log_macro_results --args {"macro_name": "elementary_cli.get_models_latest_invocations_data", "macro_args": {}} --project-dir /home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/elementary/monitor/dbt_project --profiles-dir /home/dzumi/.dbt --target dev' is 1466
