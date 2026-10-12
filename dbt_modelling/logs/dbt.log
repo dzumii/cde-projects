@@ -1,0 +1,58 @@
+[0m21:43:41.370409 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x79e44551bdd0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x79e4458c3740>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x79e445649be0>]}
+
+
+============================== 21:43:41.380539 | 0ea19205-6c64-4b98-874d-6a22bf8cabb9 ==============================
+[0m21:43:41.380539 [info ] [MainThread]: Running with dbt=1.12.5
+[0m21:43:41.381739 [debug] [MainThread]: running dbt with arguments {'use_experimental_parser': 'False', 'partial_parse': 'True', 'debug': 'False', 'invocation_command': 'dbt init marketing_data_platform', 'write_json': 'True', 'introspect': 'True', 'quiet': 'False', 'log_cache_events': 'False', 'fail_fast': 'False', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'cache_selected_only': 'False', 'warn_error': 'None', 'send_anonymous_usage_stats': 'True', 'log_format': 'default', 'target_path': 'None', 'hints_enabled': 'True', 'printer_width': '80', 'static_parser': 'True', 'version_check': 'True', 'no_print': 'None', 'indirect_selection': 'eager', 'use_colors': 'True', 'log_path': 'logs', 'maximum_seed_size_mib': '1', 'empty': 'None', 'profiles_dir': '/home/dzumi/.dbt'}
+[0m21:43:41.482727 [debug] [MainThread]: Starter project path: /home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/dbt/include/starter_project
+[0m21:43:41.501127 [info ] [MainThread]: Setting up your profile.
+[0m21:43:55.294560 [debug] [MainThread]: Spark adapter: Setting pyhive.hive logging to ERROR
+[0m21:43:55.295423 [debug] [MainThread]: Spark adapter: Setting thrift.transport logging to ERROR
+[0m21:43:55.296502 [debug] [MainThread]: Spark adapter: Setting thrift.protocol logging to ERROR
+[0m21:47:04.375391 [error] [MainThread]: [[31mERROR[0m]: Encountered an error:
+
+[0m21:47:04.494195 [error] [MainThread]: Traceback (most recent call last):
+  File "/home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/dbt/cli/requires.py", line 198, in wrapper
+    result, success = func(*args, **kwargs)
+                      ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/dbt/cli/requires.py", line 144, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/dbt/cli/main.py", line 504, in init
+    results = task.run()
+              ^^^^^^^^^^
+  File "/home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/dbt/task/init.py", line 363, in run
+    self.setup_profile(profile_name)
+  File "/home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/dbt/task/init.py", line 265, in setup_profile
+    self.create_profile_from_target(adapter, profile_name=profile_name)
+  File "/home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/dbt/task/init.py", line 182, in create_profile_from_target
+    self.create_profile_from_profile_template(profile_template, profile_name)
+  File "/home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/dbt/task/init.py", line 166, in create_profile_from_profile_template
+    target = self.generate_target_from_input(prompts, initial_target)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/dbt/task/init.py", line 132, in generate_target_from_input
+    target[key] = click.prompt(
+                  ^^^^^^^^^^^^^
+  File "/home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/click/termui.py", line 262, in prompt
+    value = prompt_func(prompt)
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/dzumi/cde-projects/dbt_modelling/.venv/lib/python3.12/site-packages/click/termui.py", line 245, in prompt_func
+    raise Abort() from None
+click.exceptions.Abort
+
+[0m21:47:04.499450 [debug] [MainThread]: Resource report: {"command_name": "init", "command_success": false, "command_wall_clock_time": 217.22865, "process_in_blocks": "0", "process_kernel_time": 3.221096, "process_mem_max_rss": "244852", "process_out_blocks": "0", "process_user_time": 8.917031}
+[0m21:47:04.501444 [debug] [MainThread]: Command `dbt init` failed at 21:47:04.500984 after 217.23 seconds
+[0m21:47:04.508020 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x79e446c19760>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x79e42e458200>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x79e444f7f770>]}
+[0m21:47:04.509669 [debug] [MainThread]: Flushing usage events
+[0m21:47:43.028298 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x709337d1f710>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x709335e10c20>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x709335e11a00>]}
+
+
+============================== 21:47:43.034314 | cbe69aa8-79c7-436b-93a5-9bf4c7887bb1 ==============================
+[0m21:47:43.034314 [info ] [MainThread]: Running with dbt=1.12.5
+[0m21:47:43.035440 [debug] [MainThread]: running dbt with arguments {'write_json': 'True', 'use_colors': 'True', 'cache_selected_only': 'False', 'profiles_dir': '/home/dzumi/.dbt', 'target_path': 'None', 'log_format': 'default', 'no_print': 'None', 'indirect_selection': 'eager', 'printer_width': '80', 'log_path': 'logs', 'invocation_command': 'dbt init marketing_data_platform --skip-profile-setup', 'warn_error': 'None', 'version_check': 'True', 'maximum_seed_size_mib': '1', 'use_experimental_parser': 'False', 'log_cache_events': 'False', 'send_anonymous_usage_stats': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'introspect': 'True', 'debug': 'False', 'quiet': 'False', 'fail_fast': 'False', 'hints_enabled': 'True', 'static_parser': 'True', 'partial_parse': 'True', 'empty': 'None'}
+[0m21:47:43.071514 [info ] [MainThread]: A project called marketing_data_platform already exists here.
+[0m21:47:43.073646 [debug] [MainThread]: Resource report: {"command_name": "init", "command_success": true, "command_wall_clock_time": 0.21357177, "process_in_blocks": "0", "process_kernel_time": 0.393904, "process_mem_max_rss": "107912", "process_out_blocks": "0", "process_user_time": 3.249714}
+[0m21:47:43.074527 [debug] [MainThread]: Command `dbt init` succeeded at 21:47:43.074308 after 0.21 seconds
+[0m21:47:43.075214 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x709335126900>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x709336f06600>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x709335863920>]}
+[0m21:47:43.075855 [debug] [MainThread]: Flushing usage events
+[0m21:47:44.248798 [debug] [MainThread]: An error was encountered while trying to flush usage events

@@ -1,0 +1,90 @@
+version: 2
+sources:
+  - name: raw
+    catalog: marketing_dev
+    schema: raw
+    description: "Raw marketing data loaded from CSV files in UC Volumes"
+    tables:
+      # Facebook
+      - name: facebook_ads_stats
+        description: "Facebook ad performance metrics (fact)"
+        columns:
+          - name: ad_id
+            description: "Facebook ad ID (long)"
+          - name: account_id
+            description: "Facebook account ID"
+          - name: ad_spend
+            description: "Spend in account currency"
+          - name: ad_impressions
+            description: "Ad impressions (cast to INT from string)"
+          - name: ad_clicks
+            description: "Ad clicks (cast to INT from string)"
+          - name: ad_date
+            description: "Performance date"
+
+      - name: facebook_ad
+        description: "Bridge table: links ad_id to campaign_id, ad_group_id, account_id"
+        columns:
+          - name: ad_id
+          - name: campaign_id
+          - name: ad_group_id
+          - name: account_id
+          - name: ad_name
+          - name: ad_status
+            description: "ACTIVE, PAUSED, or ARCHIVED"
+
+      - name: facebook_campaign
+        description: "Facebook campaign dimension"
+        columns:
+          - name: campaign_id
+          - name: campaign_name
+          - name: campaign_updated_at
+
+      - name: facebook_adgroup
+        description: "Facebook adgroup dimension"
+        columns:
+          - name: ad_group_id
+          - name: ad_group_name
+          - name: ad_group_updated_at
+
+      - name: facebook_account
+        description: "Facebook account dimension"
+        columns:
+          - name: account_id
+          - name: account_name
+          - name: ad_currency_code
+
+      # Snapchat
+      - name: snapchat_ads_stats
+        description: "Snapchat ad performance metrics (fact)"
+        columns:
+          - name: ad_id
+            description: "Originally ad_detail_id — renamed during load"
+          - name: ad_spend
+          - name: ad_impressions
+          - name: ad_clicks
+            description: "Cast to INT; 'null' strings converted to NULL"
+          - name: ad_date
+          - name: ad_country
+          - name: ad_currency_code
+
+      - name: snapchat_ad
+        description: "Links ad_id to ad_group_id and ad_name"
+        columns:
+          - name: ad_id
+          - name: ad_group_id
+          - name: ad_name
+
+      - name: snapchat_adgroup
+        description: "Links ad_group_id to campaign_id and ad_group_name"
+        columns:
+          - name: ad_group_id
+          - name: campaign_id
+          - name: ad_group_name
+
+      - name: snapchat_campaign
+        description: "Snapchat campaign dimension"
+        columns:
+          - name: campaign_id
+          - name: account_id
+          - name: campaign_name

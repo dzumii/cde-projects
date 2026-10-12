@@ -1,0 +1,43 @@
+version: 2
+models:
+  - name: fct_marketing_spend
+    description: "Unified marketing spend across Facebook and Snapchat with CTR, CPC, CPM"
+    columns:
+      - name: date
+        tests:
+          - not_null
+      - name: platform
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['facebook', 'snapchat']
+      - name: campaign_id
+        tests:
+          - not_null
+      - name: ad_id
+        tests:
+          - not_null
+      - name: spend
+        tests:
+          - not_null
+      - name: impressions
+        tests:
+          - not_null
+      - name: clicks
+        tests:
+          - not_null
+      - name: ctr
+        description: "Click-through rate = clicks / impressions"
+      - name: cpc
+        description: "Cost per click = spend / clicks"
+      - name: cpm
+        description: "Cost per mille = spend / impressions × 1,000"
+    tests:
+      - dbt_utils.expression_is_true:
+          expression: "spend >= 0"
+      - dbt_utils.expression_is_true:
+          expression: "impressions >= 0"
+      - dbt_utils.expression_is_true:
+          expression: "clicks >= 0"
+      - dbt_utils.expression_is_true:
+          expression: "ctr >= 0 AND ctr <= 1"

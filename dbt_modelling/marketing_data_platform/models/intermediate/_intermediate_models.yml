@@ -1,0 +1,37 @@
+version: 2
+models:
+  - name: int_marketing_ads
+    description: "Unified marketing ad performance from Facebook and Snapchat, standardized to a common schema before mart aggregation"
+    columns:
+      - name: date
+        tests:
+          - not_null
+      - name: platform
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['facebook', 'snapchat']
+      - name: ad_id
+        tests:
+          - not_null
+      - name: campaign_id
+        tests:
+          - not_null
+      - name: spend
+        tests:
+          - not_null
+      - name: impressions
+        tests:
+          - not_null
+      - name: clicks
+        description: "Clicks — Snapchat uses swipes; both are normalized to clicks"
+        tests:
+          - not_null
+      - name: campaign_name
+        description: "Campaign display name from platform dimension table"
+      - name: ad_group_name
+        description: "Ad group display name from platform dimension table"
+      - name: ad_name
+        description: "Ad/creative display name from platform dimension table"
+      - name: currency
+        description: "Currency code (e.g. USD, EUR)"
