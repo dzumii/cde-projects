@@ -546,15 +546,15 @@ Production deployments use a **Service Principal** — not a personal access tok
 ### Service Principal Details
 
 - **Display name**: `marketing-data-platform-prod`
-- **Application ID**: `853210f1-e236-4155-add3-296f992bdd8b`
+- **Application ID**: `<application ID>`
 
 ### Unity Catalog Permissions
 
 ```sql
--- GRANT statements use the application ID (UUID), NOT the display name
-GRANT USE CATALOG ON CATALOG marketing_prod TO `853210f1-e236-4155-add3-296f992bdd8b`;
-GRANT CREATE SCHEMA ON CATALOG marketing_prod TO `853210f1-e236-4155-add3-296f992bdd8b`;
-GRANT ALL PRIVILEGES ON CATALOG marketing_prod TO `853210f1-e236-4155-add3-296f992bdd8b`;
+-- GRANT statements use the application ID (UUID)
+GRANT USE CATALOG ON CATALOG marketing_prod TO `<application ID>`;
+GRANT CREATE SCHEMA ON CATALOG marketing_prod TO `<application ID>`;
+GRANT ALL PRIVILEGES ON CATALOG marketing_prod TO `<application ID>`;
 ```
 
 > **Important**: Databricks GRANT statements require the **application ID** (UUID format), not the display name.

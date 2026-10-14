@@ -1,1 +1,17 @@
 .venv/
+__pycache__/
+*.pyc
+.DS_Store
+
+# dbt project files and generated artifacts
+marketing_data_platform/target/
+marketing_data_platform/dbt_packages/
+marketing_data_platform/logs/
+marketing_data_platform/edr_target/
+marketing_data_platform/profiles.yml
+marketing_data_platform/.env
+marketing_data_platform/wsl_history_backup.txt
+
+# Outputs written outside the dbt project
+logs/
+edr_target/
