@@ -529,7 +529,7 @@ Pull Request to main
 
 | Catalog | Purpose |
 |---|---|
-| `marketing_dev` | Development & CI environments |
+| `marketing_dev` | Development & CI, plus the shared raw source read by production |
 | `marketing_prod` | Production environment |
 
 ### Schemas (per catalog)
@@ -555,7 +555,7 @@ Pull Request to main
 Production deployments use a **Service Principal** — not a personal access token. This ensures:
 - **Auditable access**: All production actions are tied to a machine identity, not a person
 - **Non-revocable by individual turnover**: Access persists regardless of team changes
-- **Principle of least privilege**: The SP only has access to `marketing_prod` catalog
+- Production models write to `marketing_prod`; their source tables remain in `marketing_dev.raw` and are read-only to the production principal.
 
 ### Service Principal Details
 
@@ -569,9 +569,14 @@ Production deployments use a **Service Principal** — not a personal access tok
 GRANT USE CATALOG ON CATALOG marketing_prod TO `<application ID>`;
 GRANT CREATE SCHEMA ON CATALOG marketing_prod TO `<application ID>`;
 GRANT ALL PRIVILEGES ON CATALOG marketing_prod TO `<application ID>`;
+
+-- Production staging reads shared raw source tables from marketing_dev
+GRANT USE CATALOG ON CATALOG marketing_dev TO `<application ID>`;
+GRANT USE SCHEMA ON SCHEMA marketing_dev.raw TO `<application ID>`;
+GRANT SELECT ON SCHEMA marketing_dev.raw TO `<application ID>`;
 ```
 
-> **Important**: Databricks GRANT statements require the **application ID** (UUID format), not the display name.
+> **Important**: Databricks GRANT statements require the **application ID** (UUID format), not the display name. The current grant script uses `ALL PRIVILEGES` on the production catalog; narrow that grant to the required production privileges for a least-privilege deployment.
 
 ---
 
