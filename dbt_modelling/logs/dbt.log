@@ -56,3 +56,19 @@ click.exceptions.Abort
 [0m21:47:43.075214 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x709335126900>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x709336f06600>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x709335863920>]}
 [0m21:47:43.075855 [debug] [MainThread]: Flushing usage events
 [0m21:47:44.248798 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m08:55:54.815912 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7b6da2084ec0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7b6da0f6ac00>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7b6da0ddcc20>]}
+
+
+============================== 08:55:54.821610 | 5c5c0cfe-30c8-498c-8bfe-ba7551a886e4 ==============================
+[0m08:55:54.821610 [info ] [MainThread]: Running with dbt=1.12.5
+[0m08:55:54.822424 [debug] [MainThread]: running dbt with arguments {'maximum_seed_size_mib': '1', 'partial_parse': 'True', 'warn_error': 'None', 'write_json': 'True', 'no_print': 'None', 'version_check': 'True', 'debug': 'False', 'indirect_selection': 'eager', 'fail_fast': 'False', 'use_experimental_parser': 'False', 'introspect': 'True', 'empty': 'False', 'log_format': 'default', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'profiles_dir': '/home/dzumi/.dbt', 'target_path': 'None', 'log_cache_events': 'False', 'log_path': 'logs', 'hints_enabled': 'True', 'quiet': 'False', 'cache_selected_only': 'False', 'invocation_command': 'dbt run --target dev', 'printer_width': '80', 'static_parser': 'True', 'use_colors': 'True', 'send_anonymous_usage_stats': 'True'}
+[0m08:55:54.823018 [error] [MainThread]: [[31mERROR[0m]: Encountered an error:
+Runtime Error
+  No dbt_project.yml found at expected path /home/dzumi/cde-projects/dbt_modelling/dbt_project.yml
+  Verify that each entry within packages.yml (and their transitive dependencies) contains a file named dbt_project.yml
+  
+[0m08:55:54.824282 [debug] [MainThread]: Resource report: {"command_name": "run", "command_success": false, "command_wall_clock_time": 0.096303955, "process_in_blocks": "0", "process_kernel_time": 0.421856, "process_mem_max_rss": "103484", "process_out_blocks": "0", "process_user_time": 1.671801}
+[0m08:55:54.824947 [debug] [MainThread]: Command `dbt run` failed at 08:55:54.824784 after 0.10 seconds
+[0m08:55:54.825472 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7b6da45b34a0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7b6da0a3c950>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7b6d9ff30770>]}
+[0m08:55:54.825903 [debug] [MainThread]: Flushing usage events
+[0m08:55:56.809383 [debug] [MainThread]: An error was encountered while trying to flush usage events
