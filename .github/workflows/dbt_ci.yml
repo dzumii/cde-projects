@@ -1,0 +1,80 @@
+name: dbt CI/CD Pipeline
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  ci_validate:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./dbt_modelling/marketing_data_platform
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install dbt
+        run: pip install dbt-databricks
+      - name: Create profiles.yml
+        run: |
+          mkdir -p ~/.dbt
+          cat > ~/.dbt/profiles.yml << 'EOF'
+          marketing_data_platform:
+            target: ci
+            outputs:
+              ci:
+                type: databricks
+                host: ${{ secrets.DATABRICKS_HOST }}
+                http_path: ${{ secrets.DATABRICKS_HTTP_PATH }}
+                token: ${{ secrets.DATABRICKS_CI_TOKEN }}
+                catalog: marketing_dev
+                schema: ci
+                threads: 4
+          EOF
+      - name: dbt deps
+        run: dbt deps
+      - name: dbt debug
+        run: dbt debug --target ci
+      - name: dbt build (mart and upstream models)
+        run: dbt build --target ci --select +fct_marketing_spend
+
+  production_deploy:
+    needs: ci_validate
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    defaults:
+      run:
+        working-directory: ./dbt_modelling/marketing_data_platform
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install dbt
+        run: pip install dbt-databricks
+      - name: Create profiles.yml
+        run: |
+          mkdir -p ~/.dbt
+          cat > ~/.dbt/profiles.yml << 'EOF'
+          marketing_data_platform:
+            target: prod
+            outputs:
+              prod:
+                type: databricks
+                host: ${{ secrets.DATABRICKS_HOST }}
+                http_path: ${{ secrets.DATABRICKS_HTTP_PATH }}
+                token: ${{ secrets.DATABRICKS_PROD_TOKEN }}
+                catalog: marketing_prod
+                schema: marts
+                threads: 4
+          EOF
+      - name: dbt deps
+        run: dbt deps
+      - name: dbt run (production)
+        run: dbt run --target prod
+      - name: dbt test (production)
+        run: dbt test --target prod
