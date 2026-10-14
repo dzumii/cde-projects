@@ -54,6 +54,13 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+      - name: Validate production OAuth secrets
+        env:
+          DATABRICKS_PROD_CLIENT_ID: ${{ secrets.DATABRICKS_PROD_CLIENT_ID }}
+          DATABRICKS_PROD_CLIENT_SECRET: ${{ secrets.DATABRICKS_PROD_CLIENT_SECRET }}
+        run: |
+          [[ -n "$DATABRICKS_PROD_CLIENT_ID" ]] || { echo "Missing DATABRICKS_PROD_CLIENT_ID GitHub secret" >&2; exit 1; }
+          [[ -n "$DATABRICKS_PROD_CLIENT_SECRET" ]] || { echo "Missing DATABRICKS_PROD_CLIENT_SECRET GitHub secret" >&2; exit 1; }
       - name: Install dbt
         run: pip install dbt-databricks
       - name: Create profiles.yml
@@ -67,13 +74,17 @@ jobs:
                 type: databricks
                 host: ${{ secrets.DATABRICKS_HOST }}
                 http_path: ${{ secrets.DATABRICKS_HTTP_PATH }}
-                token: ${{ secrets.DATABRICKS_PROD_TOKEN }}
+                client_id: ${{ secrets.DATABRICKS_PROD_CLIENT_ID }}
+                client_secret: ${{ secrets.DATABRICKS_PROD_CLIENT_SECRET }}
+                auth_type: oauth
                 catalog: marketing_prod
                 schema: marts
                 threads: 4
           EOF
       - name: dbt deps
         run: dbt deps
+      - name: dbt debug
+        run: dbt debug --target prod
       - name: dbt run (production)
         run: dbt run --target prod
       - name: dbt test (production)

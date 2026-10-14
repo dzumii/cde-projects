@@ -352,7 +352,9 @@ marketing_data_platform:
       type: databricks
       host: <your-workspace>.cloud.databricks.com
       http_path: /sql/1.0/warehouses/<your-warehouse-http-path>
-      token: "{{ env_var('DBT_ENV_SECRET_DATABRICKS_PROD_TOKEN') }}"
+      client_id: "{{ env_var('DBT_ENV_SECRET_DATABRICKS_PROD_CLIENT_ID') }}"
+      client_secret: "{{ env_var('DBT_ENV_SECRET_DATABRICKS_PROD_CLIENT_SECRET') }}"
+      auth_type: oauth
       catalog: marketing_prod
       schema: marts
       threads: 4
@@ -376,7 +378,7 @@ The profile reads tokens from environment variables; do not put token values in 
 read -r -s -p 'Databricks dev token: ' DBT_ENV_SECRET_DATABRICKS_DEV_TOKEN; printf '\n'; export DBT_ENV_SECRET_DATABRICKS_DEV_TOKEN
 ```
 
-For the `ci` or `prod` target, use the corresponding variable name: `DBT_ENV_SECRET_DATABRICKS_CI_TOKEN` or `DBT_ENV_SECRET_DATABRICKS_PROD_TOKEN`. These shell variables last for that terminal session. CI obtains its credentials from GitHub Actions secrets.
+For the `ci` target, set `DBT_ENV_SECRET_DATABRICKS_CI_TOKEN`. For `prod`, set `DBT_ENV_SECRET_DATABRICKS_PROD_CLIENT_ID` and `DBT_ENV_SECRET_DATABRICKS_PROD_CLIENT_SECRET`; the client secret should be entered with a hidden prompt. These shell variables last for that terminal session. CI obtains its credentials from GitHub Actions secrets.
 
 ### 4. Verify Connection
 
@@ -516,7 +518,8 @@ Pull Request to main
 | `DATABRICKS_HOST` | Databricks workspace hostname |
 | `DATABRICKS_HTTP_PATH` | SQL Warehouse HTTP path |
 | `DATABRICKS_CI_TOKEN` | Token for CI environment |
-| `DATABRICKS_PROD_TOKEN` | Service Principal token for production |
+| `DATABRICKS_PROD_CLIENT_ID` | Production service principal application ID |
+| `DATABRICKS_PROD_CLIENT_SECRET` | Production service principal OAuth secret |
 
 ---
 
