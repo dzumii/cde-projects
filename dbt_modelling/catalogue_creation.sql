@@ -17,8 +17,11 @@ CREATE SCHEMA IF NOT EXISTS marketing_prod.marts;
 
 
 -- Grant the service principal access to the prod catalog
-GRANT USE CATALOG ON CATALOG marketing_prod TO `<application id>`;
-GRANT USE SCHEMA ON SCHEMA marketing_prod.marts TO `<application id>`;
-GRANT CREATE TABLE ON SCHEMA marketing_prod.marts TO `<application id>`;
-GRANT MODIFY ON SCHEMA marketing_prod.marts TO `<application id>`;
-GRANT SELECT ON SCHEMA marketing_prod.marts TO `<application id>`;
+GRANT USE CATALOG ON CATALOG marketing_prod TO `<application-id-of-your-service-principal>`;
+GRANT CREATE SCHEMA ON CATALOG marketing_prod TO `<application-id-of-your-service-principal>`;
+GRANT ALL PRIVILEGES ON CATALOG marketing_prod TO `<application-id-of-your-service-principal>`;
+
+-- Read-only access to the shared raw sources used by production staging models
+GRANT USE CATALOG ON CATALOG marketing_dev TO `<application-id-of-your-service-principal>`;
+GRANT USE SCHEMA ON SCHEMA marketing_dev.raw TO `<application-id-of-your-service-principal>`;
+GRANT SELECT ON SCHEMA marketing_dev.raw TO `<application-id-of-your-service-principal>`;
