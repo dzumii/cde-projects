@@ -27,5 +27,5 @@ SELECT
 FROM {{ ref('int_marketing_ads') }}
 
 {% if is_incremental() %}
-    WHERE date > (SELECT MAX(date) FROM {{ this }})
+    WHERE date >= DATE_SUB((SELECT MAX(date) FROM {{ this }}), 3)
 {% endif %}

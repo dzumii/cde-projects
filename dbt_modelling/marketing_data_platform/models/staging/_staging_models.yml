@@ -15,7 +15,8 @@ models:
       - name: platform
         tests:
           - accepted_values:
-              values: ['facebook']
+              arguments:
+                values: ['facebook']
 
   - name: stg_snapchat_ads
     description: "Snapchat ads with enriched campaign, adgroup names"
@@ -32,4 +33,5 @@ models:
       - name: platform
         tests:
           - accepted_values:
-              values: ['snapchat']
+              arguments:
+                values: ['snapchat']

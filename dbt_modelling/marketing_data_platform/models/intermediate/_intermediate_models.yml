@@ -10,7 +10,8 @@ models:
         tests:
           - not_null
           - accepted_values:
-              values: ['facebook', 'snapchat']
+              arguments:
+                values: ['facebook', 'snapchat']
       - name: ad_id
         tests:
           - not_null
