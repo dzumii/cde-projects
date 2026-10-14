@@ -286,13 +286,13 @@ Mart Tests     ->  validates final output (metric ranges, CTR bounds, no negativ
 | Target | Catalog | Schema | Auth Method | Purpose |
 |---|---|---|---|---|
 | `dev` | `marketing_dev` | `staging` | Personal Access Token | Local development & testing |
-| `ci` | `marketing_dev` | `ci` | CI Token | Pull request validation |
+| `ci` | `marketing_dev` | `ci_*` | CI Token | Pull request validation |
 | `prod` | `marketing_prod` | `marts` | Service Principal | Production deployment |
 
 ### Why Environment Separation Matters
 
 - **Dev**: Developers can experiment freely without affecting production data
-- **CI**: Isolated schema per PR run — tests validate without polluting dev
+- **CI**: Separate CI schemas — tests validate without writing into dev schemas
 - **Prod**: Service Principal authentication ensures automated, auditable deploys
 
 ---
@@ -334,7 +334,7 @@ marketing_data_platform:
       type: databricks
       host: <your-workspace>.cloud.databricks.com
       http_path: /sql/1.0/warehouses/<your-warehouse-http-path>
-      token: <your-personal-access-token>
+      token: "{{ env_var('DBT_ENV_SECRET_DATABRICKS_DEV_TOKEN') }}"
       catalog: marketing_dev
       schema: staging
       threads: 4
@@ -343,7 +343,7 @@ marketing_data_platform:
       type: databricks
       host: <your-workspace>.cloud.databricks.com
       http_path: /sql/1.0/warehouses/<your-warehouse-http-path>
-      token: <ci-token>
+      token: "{{ env_var('DBT_ENV_SECRET_DATABRICKS_CI_TOKEN') }}"
       catalog: marketing_dev
       schema: ci
       threads: 4
@@ -352,7 +352,7 @@ marketing_data_platform:
       type: databricks
       host: <your-workspace>.cloud.databricks.com
       http_path: /sql/1.0/warehouses/<your-warehouse-http-path>
-      token: <service-principal-token>
+      token: "{{ env_var('DBT_ENV_SECRET_DATABRICKS_PROD_TOKEN') }}"
       catalog: marketing_prod
       schema: marts
       threads: 4
@@ -364,11 +364,19 @@ elementary:
       type: databricks
       host: <your-workspace>.cloud.databricks.com
       http_path: /sql/1.0/warehouses/<your-warehouse-http-path>
-      token: <your-personal-access-token>
+      token: "{{ env_var('DBT_ENV_SECRET_DATABRICKS_DEV_TOKEN') }}"
       catalog: marketing_dev
       schema: staging
       threads: 4
 ```
+
+The profile reads tokens from environment variables; do not put token values in this file or commit it. Set the token for the target you will use in your current shell. The hidden prompt avoids echoing the token or placing it in shell history:
+
+```bash
+read -r -s -p 'Databricks dev token: ' DBT_ENV_SECRET_DATABRICKS_DEV_TOKEN; printf '\n'; export DBT_ENV_SECRET_DATABRICKS_DEV_TOKEN
+```
+
+For the `ci` or `prod` target, use the corresponding variable name: `DBT_ENV_SECRET_DATABRICKS_CI_TOKEN` or `DBT_ENV_SECRET_DATABRICKS_PROD_TOKEN`. These shell variables last for that terminal session. CI obtains its credentials from GitHub Actions secrets.
 
 ### 4. Verify Connection
 
@@ -483,19 +491,22 @@ Pull Request to main
   CI Validation Job
   1. dbt deps
   2. dbt debug (connection test)
-  3. dbt compile (syntax check)
-  4. dbt run --select staging
-  5. dbt test (all tests)
+  3. dbt build --select +fct_marketing_spend
+   (mart, upstream models, and their tests)
       |
       | pass
       v
   Merge to main
       |
       v
+  CI Validation Job runs on main push
+     |
+     | pass (required by deployment job)
+     v
   Production Deploy Job
   1. dbt deps
   2. dbt run --target prod
-  3. dbt test --target prod
+  3. dbt test --target prod (post-deploy)
 ```
 
 ### GitHub Secrets Required
